@@ -23,6 +23,13 @@ button[kind="primary"]{background:#087e82;border-radius:6px}[data-testid="stDown
 .brand{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #dce5e9;padding:0 0 12px;margin-bottom:7px;font-size:32px;font-weight:750;line-height:1.25}.brand span{font-size:12px;color:#176a70;background:#e1f0f0;border-radius:6px;padding:5px 11px;white-space:nowrap}
 .map-heading{font-size:18px;font-weight:750;line-height:1.25;padding:10px 0 12px}.annual-label{font-size:12px;color:#627685;padding:10px 8px}.sub{color:#526779;font-size:14px;padding-top:5px;padding-bottom:5px}.coverage{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #d7e2e7;border-radius:7px;background:#fff;padding:9px 14px;margin:4px 0 8px;font-size:12px;color:#5a6f7e}.coverage strong{color:#203747;margin-left:8px;font-weight:650}
 .area-title{font-size:20px;font-weight:750;color:#172f44;line-height:1.2;margin:2px 0 4px}.area-state{font-size:11px;color:#71828e;letter-spacing:.4px}.reading{display:flex;align-items:baseline;justify-content:space-between;background:#e8f3f3;border-radius:7px;padding:9px 12px;margin:7px 0;color:#175f66;font-size:12px}.reading strong{font-size:23px;white-space:nowrap}.comparison{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#596d7b}.comparison b{color:#213e52}.foot{border-top:1px solid #dce5e9;margin-top:10px;padding-top:10px;color:#5d7181;font-size:11px}
+
+[role="tabpanel"]:has(#download-the-calibrated-product){padding-top:16px}
+[role="tabpanel"]:has(#download-the-calibrated-product) [data-testid="stVerticalBlock"]{gap:1rem}
+[role="tabpanel"]:has(#download-the-calibrated-product) h3{margin:0 0 10px!important;line-height:1.45}
+[role="tabpanel"]:has(#download-the-calibrated-product) [data-testid="stMarkdownContainer"] p{line-height:1.65;margin-bottom:8px}
+[role="tabpanel"]:has(#download-the-calibrated-product) [data-testid="stCaptionContainer"] p{line-height:1.6;margin-bottom:10px}
+[role="tabpanel"]:has(#download-the-calibrated-product) [data-testid="stDownloadButton"],[role="tabpanel"]:has(#download-the-calibrated-product) [data-testid="stLinkButton"]{margin-top:6px}
 .trend-heading{margin-top:20px;margin-bottom:8px;font-size:15px;font-weight:700;line-height:1.4}
 .about-intro{width:100%;max-width:none;padding:12px 0 4px}
 [role="tabpanel"]:has(.about-intro) [data-testid="stMarkdownContainer"] p,[role="tabpanel"]:has(.about-intro) [data-testid="stMarkdownContainer"] li{text-align:justify;text-align-last:left;hyphens:auto;overflow-wrap:break-word}
