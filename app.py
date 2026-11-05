@@ -23,6 +23,12 @@ button[kind="primary"]{background:#087e82;border-radius:6px}[data-testid="stDown
 .brand{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #dce5e9;padding:0 0 12px;margin-bottom:7px;font-size:32px;font-weight:750;line-height:1.25}.brand span{font-size:12px;color:#176a70;background:#e1f0f0;border-radius:6px;padding:5px 11px;white-space:nowrap}
 .map-heading{font-size:18px;font-weight:750;line-height:1.25;padding:10px 0 12px}.annual-label{font-size:12px;color:#627685;padding:10px 8px}.sub{color:#526779;font-size:14px;padding-top:5px;padding-bottom:5px}.coverage{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #d7e2e7;border-radius:7px;background:#fff;padding:9px 14px;margin:4px 0 8px;font-size:12px;color:#5a6f7e}.coverage strong{color:#203747;margin-left:8px;font-weight:650}
 .area-title{font-size:20px;font-weight:750;color:#172f44;line-height:1.2;margin:2px 0 4px}.area-state{font-size:11px;color:#71828e;letter-spacing:.4px}.reading{display:flex;align-items:baseline;justify-content:space-between;background:#e8f3f3;border-radius:7px;padding:9px 12px;margin:7px 0;color:#175f66;font-size:12px}.reading strong{font-size:23px;white-space:nowrap}.comparison{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#596d7b}.comparison b{color:#213e52}.foot{border-top:1px solid #dce5e9;margin-top:10px;padding-top:10px;color:#5d7181;font-size:11px}
+.trend-heading{margin-top:20px;margin-bottom:8px;font-size:15px;font-weight:700;line-height:1.4}
+.about-intro{max-width:85ch;padding:12px 0 4px}
+.about-intro h3{margin:0 0 14px!important;line-height:1.4}
+.about-intro h4{margin:22px 0 10px;font-size:1rem;line-height:1.4}
+[data-testid="stMarkdownContainer"] .about-intro p{margin:0 0 16px;font-size:.9rem;line-height:1.7}
+.author-credit{text-align:right;margin-top:24px;padding-top:16px;border-top:1px solid #dce5e9;font-size:13px;line-height:1.7;color:#526779}.author-credit a{color:#087e82;overflow-wrap:anywhere}
 @media(max-width:700px){[data-testid="stRadio"] [role="radiogroup"]{flex-wrap:wrap;overflow:visible}.block-container{padding:.75rem!important}.brand{font-size:23px}.brand span{font-size:10px}h1{font-size:1.45rem!important}.coverage{flex-wrap:wrap;gap:4px;font-size:10px;padding:8px}.coverage strong{margin-left:3px}.sub{font-size:12px}[data-testid="stHorizontalBlock"]{gap:.5rem}[data-testid="stHorizontalBlock"]:not(:has([data-testid="stPlotlyChart"])):has(> [data-testid="stColumn"] [data-testid="stSelectbox"]) {flex-wrap:wrap!important}[data-testid="stHorizontalBlock"]:not(:has([data-testid="stPlotlyChart"])):has(> [data-testid="stColumn"] [data-testid="stSelectbox"])> [data-testid="stColumn"]{min-width:calc(50% - .5rem)!important;flex:1 1 calc(50% - .5rem)!important;width:calc(50% - .5rem)!important}}
 </style>''',unsafe_allow_html=True)
 
@@ -111,12 +117,12 @@ with explore:
    st.caption(f'SA2 {selected} · {row.region_class}' if level=='SA2' else f'{level} {selected} · {int(row.n_sa2):,} constituent SA2s')
    reading=f'{row.display_value:+.2f}' if diverge else f'{row.display_value:.2f}'
    st.markdown(f'<div class="reading"><span>{html.escape(mode if diverge else frequency.title()+" PM₂.₅")}</span><strong>{reading} <small style="font-size:12px">µg/m³</small></strong></div><div class="comparison"><span>Calibrated <b>{row[cal]:.2f}</b></span><span>Raw ACAG <b>{row[raw]:.2f}</b></span></div>',unsafe_allow_html=True)
-   st.markdown('**Change over time**')
+   st.markdown('<div class="trend-heading">Change over time</div>',unsafe_allow_html=True)
    dates=pd.to_datetime(history[['year','month']].assign(day=1)) if frequency=='monthly' else pd.to_datetime(history.year.astype(str)+'-01-01')
    fig=go.Figure()
    fig.add_trace(go.Scatter(x=dates,y=history[cal],name='Calibrated',line=dict(color='#087e82',width=2.5)))
    fig.add_trace(go.Scatter(x=dates,y=history[raw],name='Raw ACAG',line=dict(color='#96a3ad',dash='dash',width=2)))
-   fig.update_layout(height=175,margin=dict(l=4,r=4,t=16,b=4),paper_bgcolor='white',plot_bgcolor='white',legend=dict(orientation='h',y=1.28,x=0,font=dict(size=10)),font=dict(color='#425a6d',size=10),yaxis=dict(title='µg/m³',gridcolor='#edf1f4',rangemode='tozero'),xaxis=dict(showgrid=False),hovermode='x unified')
+   fig.update_layout(height=210,margin=dict(l=4,r=4,t=40,b=8),paper_bgcolor='white',plot_bgcolor='white',legend=dict(orientation='h',y=1.04,yanchor='bottom',x=0,font=dict(size=10)),font=dict(color='#425a6d',size=10),yaxis=dict(title='µg/m³',gridcolor='#edf1f4',rangemode='tozero'),xaxis=dict(showgrid=False),hovermode='x unified')
    st.plotly_chart(fig,use_container_width=True,config={'displayModeBar':False})
    st.caption('Area average · Not population weighted' if level=='SA2' else 'Area-weighted summary of SA2 estimates · Not population weighted')
    with st.expander('Monitoring support'):
@@ -165,10 +171,13 @@ with downloads:
   st.download_button('↓ Save prepared ZIP',data,file_name=f'pm25_{freq}_{years[0]}_{years[1]}_subset.zip',mime='application/zip')
  st.caption('Release '+manifest['release']+' · See About the data for source references, methods and limitations.')
 with methods:
- st.subheader('A calibrated research product')
- st.write('Monthly ACAG V6.GL.03 estimates [2] were calibrated against 19,932 station-month observations from 230 Australian monitoring stations, using the National Air Pollution Monitoring Database (NAPMD) [3].')
- st.markdown('**Calibration model**')
- st.write('The calibration model adjusts ACAG PM₂.₅ estimates using their relationship with ground-monitoring observations. It combines a national intercept and concentration slope with adjustments for each remoteness–season combination and calendar year. These adjustments are regularised to reduce unstable estimates where observations are sparse. The model was selected by comparing predictions at monitoring stations withheld from model fitting, then fitted to the full monitoring dataset to produce the calibrated estimates [1].')
+ st.markdown("""<section class="about-intro">
+<h3>A calibrated research product</h3>
+<p>Monthly ACAG V6.GL.03 estimates [2] were calibrated against 19,932 station-month observations from 230 Australian monitoring stations, using the National Air Pollution Monitoring Database (NAPMD) [3].</p>
+<h4>Calibration model</h4>
+<p>The calibration model adjusts ACAG PM₂.₅ estimates using their relationship with ground-monitoring observations. It combines a national intercept and concentration slope with adjustments for each remoteness–season combination and calendar year.</p>
+<p>These adjustments are regularised to reduce unstable estimates where observations are sparse. The model was selected by comparing predictions at monitoring stations withheld from model fitting, then fitted to the full monitoring dataset to produce the calibrated estimates [1].</p>
+</section>""",unsafe_allow_html=True)
  st.divider()
  c=st.columns(3);c[0].metric('Raw LOSO RMSE','3.438 µg/m³');c[1].metric('Calibrated LOSO RMSE','3.246 µg/m³');c[2].metric('RMSE reduction','5.60%')
  st.caption('Performance figures shown here are from the audited v16.6 release; see the downloadable release manifest for provenance.')
@@ -189,4 +198,5 @@ with methods:
 """)
  st.divider()
  st.download_button('Download release manifest',json.dumps(manifest,indent=2),file_name='manifest.json',mime='application/json')
+ st.markdown('<div class="author-credit"><strong>Author information</strong><br><a href="https://orcid.org/0009-0002-3336-3492" target="_blank" rel="noopener noreferrer">ORCID · 0009-0002-3336-3492</a></div>',unsafe_allow_html=True)
 st.markdown('<div class="foot">ACAG v16.6 audited · Calibration model &nbsp; / &nbsp; Historical research estimates · 2021 SA2 geography &nbsp; / &nbsp; Built for open exploration</div>',unsafe_allow_html=True)
