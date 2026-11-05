@@ -45,6 +45,14 @@ class ScaleTests(unittest.TestCase):
      v=snapshot(df,freq,2020,1,mode,source,2017,1).display_value
      self.assertGreaterEqual(v.min(),lo);self.assertLessEqual(v.max(),hi)
     if mode=='Change over time':self.assertEqual(lo,-hi)
+ def test_concentration_baseline_and_extreme(self):
+  from data_access import shared_map_scale
+  for freq in ['annual','monthly']:
+   df=load_data(freq)
+   self.assertEqual(shared_map_scale(df,freq,2024,1,'Concentration'),(0.0,20.0))
+   self.assertGreater(shared_map_scale(df,freq,2020,1,'Concentration')[1],20.0)
+  df=pd.DataFrame({'year':[2024],'pm25_calibrated_annual':[20.0],'pm25_acag_annual':[19.0]})
+  self.assertEqual(shared_map_scale(df,'annual',2024,1,'Concentration'),(0.0,20.0))
  def test_endpoint_controls(self):
   from streamlit.testing.v1 import AppTest
   app=AppTest.from_file(str(DATA.parent/'app.py'),default_timeout=30).run()
