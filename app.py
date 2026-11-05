@@ -139,20 +139,6 @@ with explore:
      if row.sparse_monitor_support: st.warning('Limited monitoring support in this class.')
     else:
      st.caption('These are area-weighted summaries of the published SA2 estimates, using full polygon areas. They are not separately calibrated or independently validated at this geography. No aggregate RMSE is inferred from SA2 indicators.')
-  with st.container(border=True):
-   st.subheader('↓ Download the product')
-   dl_scope=st.selectbox('Geography',['All Australia','Selected area'],key='quick_scope')
-   dl_freq=st.selectbox('Frequency',['Monthly','Annual'],key='quick_frequency').lower()
-   st.caption('2011–2024 · Original SA2 CSV + metadata (ZIP)' if dl_scope=='All Australia' else f'2011–2024 · {level} summary CSV')
-   if dl_scope=='All Australia':
-    file=DATA/f'{dl_freq}_product.zip'
-    base=os.environ.get('GITHUB_RELEASE_BASE_URL','').rstrip('/')
-    if base.startswith('https://github.com/') and '/releases/download/' in base: st.link_button('Download data',base+'/'+file.name,use_container_width=True,type='primary')
-    else: st.download_button('Download data',file.read_bytes(),file_name=file.name,mime='application/zip',use_container_width=True,type='primary',key='quick_download')
-   else:
-    export=geography_data(dl_freq,level);export=export_area(export[export.SA2_CODE_2021.eq(selected)],level)
-    st.download_button('Download data',export.to_csv(index=False),file_name=f'pm25_{level}_{selected}_{dl_freq}.csv',mime='text/csv',use_container_width=True,type='primary',key='quick_download_area')
-   st.caption('More filters and complete metadata in Downloads.')
 with downloads:
  st.subheader('Download the calibrated product')
  st.write('Choose the complete original release or create a smaller selection. Concentrations are in µg/m³.')
@@ -166,6 +152,12 @@ with downloads:
    if base.startswith('https://github.com/') and '/releases/download/' in base:
     st.link_button('↓ Download complete release',base+'/'+file.name,use_container_width=True)
    else: st.download_button('↓ Download complete release',file.read_bytes(),file_name=file.name,mime='application/zip',key=f'dl_{freq}',use_container_width=True)
+ st.divider()
+ st.subheader('Download the selected area')
+ st.caption(f'{level} · {labels[selected]} · Choose an area in Explore.')
+ dl_freq=st.selectbox('Selected-area frequency',['Monthly','Annual'],key='selected_download_frequency').lower()
+ export=geography_data(dl_freq,level);export=export_area(export[export.SA2_CODE_2021.eq(selected)],level)
+ st.download_button('Download selected area CSV',export.to_csv(index=False),file_name=f'pm25_{level}_{selected}_{dl_freq}.csv',mime='text/csv',key='selected_area_download')
  st.divider();st.subheader('Create a selection')
  with st.form('subset'):
   c=st.columns(3);freq=c[0].selectbox('Download frequency',['monthly','annual']);scope=c[1].selectbox('Geography',['All Australia']+sorted(dataset('annual').STATE_NAME.unique()));years=c[2].slider('Year range',2011,2024,(2011,2024))

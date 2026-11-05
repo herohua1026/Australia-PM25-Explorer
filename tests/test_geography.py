@@ -28,7 +28,7 @@ class GeographyTests(unittest.TestCase):
   for level in ['SA3','SA4','Australia','SA2']:
    app.selectbox(key='geography_level').select(level).run()
    self.assertEqual(len(app.exception),0,str(app.exception))
-   app.selectbox(key='quick_scope').select('Selected area').run()
+   app.selectbox(key='selected_download_frequency').select('Annual').run()
    self.assertEqual(len(app.exception),0,str(app.exception))
   app.selectbox(key='year').select(2018).run()
   self.assertEqual(app.selectbox(key='year').value,2018)
