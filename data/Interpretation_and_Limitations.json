@@ -1,0 +1,19 @@
+{
+  "upstream_monitor_independence_verified": false,
+  "validation_scope": "Incremental calibration conditional on the published ACAG input; not independent validation of the complete satellite-to-product chain",
+  "upstream_reference": "https://www.satpm.org/v6-gl-03",
+  "time_contract": "Hourly bins and month boundaries are UTC. Daily records retain their supplied date labels; their original local-day semantics are not independently verified.",
+  "remoteness_station_counts": {
+    "Inner regional": 63,
+    "Major cities": 87,
+    "Outer regional": 61,
+    "Remote": 12,
+    "Very remote": 7
+  },
+  "sparse_support_threshold_stations": 10,
+  "sparse_regions": [
+    "Very remote"
+  ],
+  "annual_contract": "Exactly 12 months; equal-month annual average, not a day-weighted or population-weighted exposure",
+  "inference": "Station-clustered primary estimates; two-way station/calendar-month sensitivity exported separately"
+}

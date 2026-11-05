@@ -1,0 +1,48 @@
+{
+  "available": true,
+  "model": "M7",
+  "monthly_rows": 412272,
+  "annual_rows": 34356,
+  "unique_sa2": 2454,
+  "coverage_complete": true,
+  "years_without_12_months": 0,
+  "monthly_zero_values": 157,
+  "actual_clipped_monthly_values": 157,
+  "maximum_clipping_increment": 1.4863583952683954,
+  "minimum_unclipped_prediction": -1.4863583952683954,
+  "maximum_annual_clipping_increment": 0.19693172488151367,
+  "reconstructed_vs_released_max_difference": 0.0,
+  "concentrations_changed_by_export_repair": false,
+  "raw_column": "acag_pm25_area_weighted",
+  "aggregation": "Spherical physical-area weighting of native-grid polygon intersections; not population weighting",
+  "annual_aggregation": "Arithmetic mean of exactly 12 monthly concentrations; incomplete SA2-years are rejected",
+  "monthly_examples": {
+    "Jan_2017": {
+      "year": 2017.0,
+      "month": 1.0,
+      "n_sa2": 2454.0,
+      "mean_raw_acag_pm25": 5.664045647406107,
+      "mean_calibrated_pm25": 6.371613345546311,
+      "mean_correction": 0.7075676981402041,
+      "n_clipped": 0.0,
+      "mean_clipping_increment": 0.0
+    },
+    "Jan_2020": {
+      "year": 2020.0,
+      "month": 1.0,
+      "n_sa2": 2454.0,
+      "mean_raw_acag_pm25": 15.127661690282975,
+      "mean_calibrated_pm25": 13.425544697810043,
+      "mean_correction": -1.702116992472933,
+      "n_clipped": 11.0,
+      "mean_clipping_increment": 0.0018041839653291298
+    }
+  },
+  "boundary_annotation_scope": "Auxiliary change/code/name/correspondence flag, not an independently verified 2011-2021 boundary history",
+  "paths": {
+    "monthly": "pm25_sa2_monthly_calibrated.csv",
+    "annual": "pm25_sa2_annual_calibrated.csv"
+  },
+  "monthly_sha256": "eea061b943ae6de8816c6c6895dfb62815f44ebfbff3afaae54dd7de69b90830",
+  "annual_sha256": "a107b31568644a809ed897332af8bb5eddd9e5b5e4594c46b8771f247036b825"
+}

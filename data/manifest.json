@@ -1,0 +1,83 @@
+{
+  "release": "ACAG-v16.6-audited",
+  "model": "M7",
+  "period": [
+    2011,
+    2024
+  ],
+  "units": "\u00b5g/m\u00b3",
+  "boundary_vintage": 2021,
+  "source_files": {
+    "monthly": {
+      "name": "pm25_sa2_monthly_calibrated.csv",
+      "sha256": "eea061b943ae6de8816c6c6895dfb62815f44ebfbff3afaae54dd7de69b90830",
+      "rows": 412272
+    },
+    "annual": {
+      "name": "pm25_sa2_annual_calibrated.csv",
+      "sha256": "a107b31568644a809ed897332af8bb5eddd9e5b5e4594c46b8771f247036b825",
+      "rows": 34356
+    }
+  },
+  "files": {
+    "annual.parquet": {
+      "bytes": 1362173,
+      "sha256": "a144634d12a91359848397212dc4d99e1a3c0ba575422a4feb0e06cac4b61817"
+    },
+    "Product_Export_Audit.json": {
+      "bytes": 1851,
+      "sha256": "db0053deb83ed4058688d73bfa5efb04427fa693fa7c667b7390a8b864ed09cf"
+    },
+    "monthly.parquet": {
+      "bytes": 13520273,
+      "sha256": "76ab3c6b30194557fa817ef9939a1562c15601a3e426d420252760382489569b"
+    },
+    "Table3_Model_performance_summary.csv": {
+      "bytes": 2955,
+      "sha256": "fc721e1507ce67c7055b5beb08a2fb6c3deba9c4add0c13635325d8963a9b314"
+    },
+    "Interpretation_and_Limitations.json": {
+      "bytes": 932,
+      "sha256": "ffeb0b54bf253831a64c595b9e5e78d6c69520acf1104d29fc1f7213c71f6299"
+    },
+    "annual_product.zip": {
+      "bytes": 1393058,
+      "sha256": "b3736e1298e28c0eab5a463fd5320d4449fe5de22aa35b7b2f456c5f556bd042"
+    },
+    "monthly_product.zip": {
+      "bytes": 21098337,
+      "sha256": "138d3798c3282956b5a45e84a302f18f973e4e27ed97161b44f6adbdb30a7f2f"
+    },
+    "map.json": {
+      "bytes": 1586636,
+      "sha256": "50bb035a8ff87876344cfff061230ebd56aeebef1b4f2d363229e4c6a57e0979"
+    },
+    "hierarchy.parquet": {
+      "bytes": 54175,
+      "sha256": "a6557303ba77ae9e90cf43ddeb71d0d7353425e81eec3b014d95257eb3531205"
+    },
+    "map_SA3.json": {
+      "bytes": 949090,
+      "sha256": "4dc98ec88b0e11b5974aca6866e542b1e83209783b1b540dac346aee5a316ec5"
+    },
+    "map_SA4.json": {
+      "bytes": 766107,
+      "sha256": "45bf4f42f34f8f7bbf24fd532c7aa322422e2201fbbaa4bf86a8c4f1235f887c"
+    },
+    "map_Australia.json": {
+      "bytes": 559749,
+      "sha256": "9556370c1b9dba8aacb1a1bfcd9d1ab5947343d687266c9786f1998172d3fffd"
+    }
+  },
+  "aggregation": {
+    "source": "ABS 2021 SA2 hierarchy from original boundary file",
+    "weights": "Full SA2 polygon area in EPSG:3577",
+    "method": "Area-weighted mean of published calibrated SA2 values; not re-extracted grid values or population-weighted exposure",
+    "levels": [
+      "SA2",
+      "SA3",
+      "SA4",
+      "Australia"
+    ]
+  }
+}
