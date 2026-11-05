@@ -115,7 +115,7 @@ with explore:
    st.session_state.last_map_nonce=picked['nonce']
    if picked['code'] in codes and picked['code']!=selected:
     st.session_state.pending_area=picked['code'];st.rerun()
-  st.caption('Simplified display boundaries · concentration uses a shared 0–20 µg/m³ scale, expanding when either product exceeds 20. Change and adjustment scales remain symmetric around zero.')
+  st.caption('Simplified display boundaries · concentration uses a shared 0–15 µg/m³ scale, expanding when either product exceeds 15. Change and adjustment scales remain symmetric around zero.')
  with right:
   import html
   row=snap[snap.SA2_CODE_2021.eq(selected)].iloc[0]

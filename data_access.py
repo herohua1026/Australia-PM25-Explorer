@@ -65,7 +65,7 @@ def shared_map_scale(df,frequency,year,month,mode,baseline_year=2011,baseline_mo
   cal,raw=value_columns(frequency)
   rows=df[df.year.eq(year)]
   if frequency=='monthly': rows=rows[rows.month.eq(month)]
-  return 0.0,max(float(rows[[cal,raw]].max().max()),20.0)
+  return 0.0,max(float(rows[[cal,raw]].max().max()),15.0)
  if mode=='Change over time':
   changes=[snapshot(df,frequency,year,month,mode,source,baseline_year,baseline_month).display_value.abs().max() for source in ['Calibrated','Raw ACAG']]
   limit=max(float(max(changes)),0.01)

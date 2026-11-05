@@ -71,7 +71,7 @@ in EPSG:3577. Simplification affects display only. It never refits calibration.
 
 LIMITS
 Raw and calibrated use the same map scale for the selected geography and period.
-Concentration uses 0–20 µg/m³ when both products fit; higher values expand the limit.
+Concentration uses 0–15 µg/m³ when both products fit; higher values expand the limit.
 Difference mode uses a symmetric scale covering both products. Scales can change
 between periods; use the change view for direct comparisons.
 Very Remote validation uses seven stations. Regional RMSE is not a confidence
