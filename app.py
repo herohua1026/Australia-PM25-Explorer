@@ -24,7 +24,8 @@ button[kind="primary"]{background:#087e82;border-radius:6px}[data-testid="stDown
 .map-heading{font-size:18px;font-weight:750;line-height:1.25;padding:10px 0 12px}.annual-label{font-size:12px;color:#627685;padding:10px 8px}.sub{color:#526779;font-size:14px;padding-top:5px;padding-bottom:5px}.coverage{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #d7e2e7;border-radius:7px;background:#fff;padding:9px 14px;margin:4px 0 8px;font-size:12px;color:#5a6f7e}.coverage strong{color:#203747;margin-left:8px;font-weight:650}
 .area-title{font-size:20px;font-weight:750;color:#172f44;line-height:1.2;margin:2px 0 4px}.area-state{font-size:11px;color:#71828e;letter-spacing:.4px}.reading{display:flex;align-items:baseline;justify-content:space-between;background:#e8f3f3;border-radius:7px;padding:9px 12px;margin:7px 0;color:#175f66;font-size:12px}.reading strong{font-size:23px;white-space:nowrap}.comparison{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#596d7b}.comparison b{color:#213e52}.foot{border-top:1px solid #dce5e9;margin-top:10px;padding-top:10px;color:#5d7181;font-size:11px}
 .trend-heading{margin-top:20px;margin-bottom:8px;font-size:15px;font-weight:700;line-height:1.4}
-.about-intro{max-width:85ch;padding:12px 0 4px}
+.about-intro{width:100%;max-width:none;padding:12px 0 4px}
+[role="tabpanel"]:has(.about-intro) [data-testid="stMarkdownContainer"] p,[role="tabpanel"]:has(.about-intro) [data-testid="stMarkdownContainer"] li{text-align:justify;text-align-last:left;hyphens:auto;overflow-wrap:break-word}
 .about-intro h3{margin:0 0 14px!important;line-height:1.4}
 .about-intro h4{margin:22px 0 10px;font-size:1rem;line-height:1.4}
 [data-testid="stMarkdownContainer"] .about-intro p{margin:0 0 16px;font-size:.9rem;line-height:1.7}
